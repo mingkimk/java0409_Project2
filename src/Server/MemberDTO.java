@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class MemberDTO implements Serializable{
 	
-	private static final long serialVersionUID = 6384368128937761766L;
+//	private static final long serialVersionUID = 6384368128937761766L;
 	private String id;
 	private String name;
 	private String pwd;
@@ -12,14 +12,15 @@ public class MemberDTO implements Serializable{
 	private String cell;
 	private int lv; 
 	
-	public MemberDTO(String id, String name,String pwd,String adr,String cell) {
-		this.id=id;
-		this.name=name;
-		this.pwd=pwd;
-		this.adr=adr;
-		this.cell=cell;
-		
-	}
+//	public MemberDTO(String id, String name,String pwd,String adr,String cell) {
+//		this.id=id;
+//		this.name=name;
+//		this.pwd=pwd;
+//		this.adr=adr;
+//		this.cell=cell;
+//		
+//	}
+	
 	
 	public String getId() {
 		return id;
@@ -56,16 +57,6 @@ public class MemberDTO implements Serializable{
 	}
 	public void setLv(int lv) {
 		this.lv = lv;
-		
 	}
-	public String[] getArray() {
-		String[] returnData = new String[5];
-		returnData[0]=this.id;
-		returnData[1]=this.name;
-		returnData[2]=this.pwd;
-		returnData[3]=this.adr;
-		returnData[4]=this.cell;
-		
-		return returnData;
-	}
+	
 }

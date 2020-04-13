@@ -1,12 +1,11 @@
 package Client;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.net.Socket;
 
-import Server.MemberDTO;
+import manager.Setting;
+
+
 
 public class Client {
 
@@ -15,7 +14,10 @@ public class Client {
 		Socket withServer = null;
 
 		withServer = new Socket("10.0.0.96", 9999);
+		new Setting();
 		new ClientChat(withServer);
+		new Login();
+		
 		
 		
 //		MemberDTO a= new MemberDTO("min","ddd","3333333*","2","4");

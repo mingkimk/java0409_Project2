@@ -21,7 +21,7 @@ public class MemberDAO {
 
 	
 	static {
-		try {
+  	try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("불러오기 성공");
 		} catch (ClassNotFoundException e) {
@@ -38,7 +38,7 @@ public class MemberDAO {
 	}
 
 	private boolean connect() {
-		boolean result = false;
+		boolean result = false; 
 		try {
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "11111111");
 			result = true;
@@ -63,7 +63,7 @@ public class MemberDAO {
 					result = true;
 				}
 				psmt.close();
-			} catch (SQLException e) {
+			} catch (SQLException e) { 
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -83,9 +83,9 @@ public class MemberDAO {
 		            stmt = conn.createStatement();
 		            String sql = "SELECT * from member where id='" + id + "'";
 		            rs = stmt.executeQuery(sql);
-		          //  System.out.println(2);
+		           System.out.println(2);
 		            if (rs.next()) {
-		               MemberDTO member = new MemberDTO(id,pwd);
+		               MemberDTO member = new MemberDTO();
 		               member.setId(rs.getString("id"));
 		               member.setName(rs.getString("name"));
 		               member.setPwd(rs.getString("pwd"));
