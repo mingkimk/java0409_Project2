@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,6 +25,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -58,12 +62,17 @@ public class Setting extends JFrame {
 	ArrayList<String[]> initList = null;
 
 	public Setting() {
-		super("관리자 설정");// super의 생성자 호출
+	//	super("관리자 설정");// super의 생성자 호출
+		JFrame jf = new JFrame("테이블에 버튼 추가 이벤트");
+
+		
 		Dimension size = new Dimension(600, 400);
 		createpanel();
 		createtb();
 		tablesetting();
 		init();
+	//	check();
+	//	comboBox();
 
 		this.setLocation(300, 300);
 		this.setSize(size);
@@ -72,6 +81,40 @@ public class Setting extends JFrame {
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 
 	}
+	JCheckBox jc;
+	public void check() {
+		jc=new JCheckBox("체크");
+		
+		jc.addActionListener(e-> {
+			System.out.println(table.getValueAt(table.getSelectedRow(),1));
+		});
+	}
+	public void Set() {
+		  Box right = Box.createVerticalBox();
+	        right.add(Box.createVerticalStrut(30));  
+	        //체크박스를 생성해 박스레이아웃에 추가
+	        right.add(new JCheckBox("너구리"));
+	        right.add(Box.createVerticalStrut(30));             
+	        right.add(new JCheckBox("돼지"));
+	        right.add(Box.createVerticalStrut(30));             
+	        right.add(new JCheckBox("족제비"));
+	        right.add(Box.createVerticalStrut(30));             
+	        right.add(new JCheckBox("봉이"));
+	        JPanel rightPanel = new JPanel(new BorderLayout());
+	        rightPanel.setBorder(
+	             new TitledBorder(new EtchedBorder(), "동물"));  
+	        rightPanel.add(right, BorderLayout.CENTER);
+	        
+	        //수평으로 배치하는 박스레이아웃을 생성해
+	        //패널leftPanel과 rightPanel을 이 박스 레이아웃에 배치
+	        Box center = Box.createHorizontalBox();
+	      //  center.add(leftPanel);
+	        center.add(rightPanel);
+	        add(center,  BorderLayout.CENTER);
+	        
+	        setSize(300,300);
+	        setVisible(true);
+	}
 
 	public void init() {
 		initList = dao.getList();
@@ -79,6 +122,9 @@ public class Setting extends JFrame {
 			tablemodel.addRow(initList.get(i));
 		}
 	}
+	
+	
+	
 
 	public void comboBox() {
 		JPanel main_panel = new JPanel();
@@ -114,7 +160,7 @@ public class Setting extends JFrame {
 						txtfield[i].setText((String) table.getValueAt(modIntRow, i));
 					}
 					modIntRow = table.getSelectedRow();
-					tfield.setText((String) table.getValueAt(modIntRow, 5));
+					tfield.setText((String) table.getValueAt(modIntRow, 4));
 				}
 				if (e.getClickCount() == 2) {// 왼쪽 더블 클릭
 

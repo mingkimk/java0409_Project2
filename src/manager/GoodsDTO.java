@@ -47,4 +47,10 @@ public class GoodsDTO {
 		returnData[3] = String.valueOf(this.price);
 		return returnData;
 	}
+	
+//	@Override
+//    public String toString() {
+//        return "CartDTO [cart_id=" + cart_id + ", userid=" + userid + ", name=" + name + ", product_id=" + product_id
+//                + ", product_name=" + product_name + ", price=" + price + ", money=" + money + ", amount=" + amount + "]";
+//    }
 }

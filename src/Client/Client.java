@@ -3,18 +3,21 @@ package Client;
 
 import java.net.Socket;
 
+import manager.Set;
 import manager.Setting;
 
 
 
 public class Client {
 
+	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Socket withServer = null;
 
 		withServer = new Socket("10.0.0.96", 9999);
-		new Setting();
+	//	new Set();
+	//	new Setting();
 		new ClientChat(withServer);
 		new Login();
 		

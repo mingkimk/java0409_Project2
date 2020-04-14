@@ -3,6 +3,7 @@ package Client;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,12 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import Server.MemberDAO;
-import Server.MemberDTO;
+import DB.MemberDAO;
+import DB.MemberDTO;
 import manager.Setting;
 import member.ShoppingMall;
 
-public class Login extends JFrame implements ActionListener {
+public class Login extends JFrame implements ActionListener, Serializable {
+	private static final long serialVersionUID = 1L;
 	JPanel nP, cP, sP, eP;
 	JLabel idLabel, pwLabel, joinlabel;
 	JTextField idField, pwdField, loginField;
@@ -29,9 +31,9 @@ public class Login extends JFrame implements ActionListener {
 		// 슈퍼클래스 생성자 부름
 		super("로그인 창");
 		createpanel();
-	//	loginchk();
+		 loginchk();
 		setClose();
-		gosignup();
+		// gosignup();
 	}
 
 	public void createpanel() {
@@ -90,40 +92,16 @@ public class Login extends JFrame implements ActionListener {
 		this.setVisible(true);
 	}
 
-	private void loginchk(MemberDTO member) {
+	private void loginchk() {
 		loginBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ClientChat client = new ClientChat(null);
 
 				try {
 
-//					 MemberDAO dao = MemberDAO.getInstance();
-//					 MemberDTO member = dao.loginchk(idField.getText());
-//					 MemberDTO result = dao.loginchk2(member);
-//					 LoginDTO lg = new LoginDTO(idField.getText(),pwdField.getText());
-//					 lg.setId(idField.getText());
-//					 lg.setPwd(pwdField.getText());
-
 					String[] check = { idField.getText(), pwdField.getText() };
+					System.out.println("여기까지");
 
-					client.streamSet(check);
-					if (idField.getText().equals(member.getId()) && pwdField.getText().equals(member.getPwd())) {
-						JOptionPane.showMessageDialog(null, "로그인 완료");
-						if (member.getLv() == 1) {
-							System.out.println("쇼핑몰창 뜨게하기");
-						//	new ShoppingMall();
-						} else if (member.getLv() == 5) {
-							System.out.println("관리자창 뜨게 하기 관리자 객체를 관리자의 창으로 보내깅");
-							//new Setting();
-							dispose();
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "존재하지 않는 아이디거나 비밀번호가 맞지 않습니다.");
-						setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-						idField.setText("");
-						pwdField.setText("");
-					}
 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -141,7 +119,7 @@ public class Login extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//loginchk();
+		 loginchk();
 		gosignup();
 	}
 
